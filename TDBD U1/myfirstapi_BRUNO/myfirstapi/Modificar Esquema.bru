@@ -1,0 +1,23 @@
+meta {
+  name: Modificar Esquema
+  type: http
+  seq: 1
+}
+
+put {
+  url: http://localhost:8080/api/user/modify-schema
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "columnName": "email",
+    "columnType": "VARCHAR(255)",
+    "constraint": "UNIQUE"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

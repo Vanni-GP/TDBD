@@ -1,0 +1,21 @@
+meta {
+  name: Aplicar Constraints
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://localhost:8080/api/user/apply-constraint
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "sql": "ALTER TABLE users ADD CONSTRAINT email_unique UNIQUE (email)"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

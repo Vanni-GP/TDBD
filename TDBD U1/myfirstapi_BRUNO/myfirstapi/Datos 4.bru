@@ -1,0 +1,25 @@
+meta {
+  name: Datos 4
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/api/user
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Sofía Torres",
+    "email": "sofia.torres@email.com",
+    "age": 25
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

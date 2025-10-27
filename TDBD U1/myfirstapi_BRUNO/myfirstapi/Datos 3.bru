@@ -1,0 +1,25 @@
+meta {
+  name: Datos 3
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8080/api/user
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Marco Rivera",
+    "email": "marco.rivera@email.com",
+    "age": 31
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
