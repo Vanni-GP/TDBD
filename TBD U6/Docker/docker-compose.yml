@@ -1,0 +1,42 @@
+services:
+  backend:
+    build: C:/Users/Vanni/Desktop/ApiRest/my-nest-api
+    container_name: nest-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/myfirstapi?schema=public"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  frontend:
+    build: C:/Users/Vanni/Desktop/Angular1/frontend-angular
+    container_name: angular-frontend
+    ports:
+      - "4200:80"
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myfirstapi
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app-network:
+    driver: bridge
