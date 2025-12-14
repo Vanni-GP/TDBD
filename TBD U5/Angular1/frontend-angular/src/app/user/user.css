@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+input {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 4px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}

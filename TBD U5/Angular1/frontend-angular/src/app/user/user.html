@@ -1,0 +1,55 @@
+<!-- Fondo general con degradado -->
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6">
+
+  <!-- Card principal -->
+  <div class="max-w-2xl w-full p-8 bg-white shadow-2xl rounded-xl space-y-10">
+
+    <!-- GET -->
+    <section>
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">📋 Lista de usuarios</h3>
+      <ul class="space-y-3">
+        <li *ngFor="let user of userService.users()" 
+            class="flex justify-between items-center bg-gray-100 p-3 rounded-lg shadow-sm hover:bg-gray-200 transition">
+          <span class="text-gray-700 font-medium">{{ user.name }} - {{ user.email }}</span>
+          <div class="space-x-3">
+            <button (click)="startEdit(user)" 
+                    class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">✏️ Editar</button>
+            <button (click)="deleteUser(user.id!)" 
+                    class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">🗑️ Eliminar</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- POST -->
+    <section>
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">➕ Agregar usuario</h3>
+      <form (ngSubmit)="addUser()" class="flex flex-col gap-3">
+        <input [(ngModel)]="newUser.name" name="name" placeholder="Nombre" 
+               class="border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" />
+        <input [(ngModel)]="newUser.email" name="email" placeholder="Email" 
+               class="border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" />
+        <button type="submit" 
+                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">Agregar</button>
+      </form>
+    </section>
+
+    <!-- PUT -->
+    <section *ngIf="editingUser">
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">✏️ Editar usuario</h3>
+      <form (ngSubmit)="updateUser()" class="flex flex-col gap-3">
+        <input [(ngModel)]="editingUser.name" name="editName" placeholder="Nuevo nombre" 
+               class="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+        <input [(ngModel)]="editingUser.email" name="editEmail" placeholder="Nuevo email" 
+               class="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+        <div class="flex gap-3">
+          <button type="submit" 
+                  class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Actualizar</button>
+          <button type="button" (click)="cancelEdit()" 
+                  class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded transition">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+</div>
